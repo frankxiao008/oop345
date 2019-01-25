@@ -3,7 +3,8 @@
 // Chris Szalwinski
 // 2019/01/22
 #define _CRT_SECURE_NO_WARNINGS
-#include "Timekeeper.h"
+#include <iomanip>
+#include "TimeKeeper.h"
 using namespace std::chrono;
 
 
@@ -38,8 +39,10 @@ namespace sict {
 
 	void Timekeeper::report(std::ostream& os)const {
 		os << "Execution Times:" << std::endl;
-		for (int i = 0; i < recordNum; i++)
-			os << duration_cast<milliseconds>(record[recordNum].dura).count() << record[recordNum].timeUnit << std::endl;
-
+		for (int i = 0; i < recordNum; i++) {
+			os << record[i].messAge;
+			os << std::right << std::fixed << std::setw(6) << duration_cast<milliseconds>(record[i].dura).count() << " ";
+			os << record[i].timeUnit << std::endl;
+		}
 	}
 }
